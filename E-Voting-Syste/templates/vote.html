@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cast Your Vote</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: white;
+    }
+
+    .vote-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    button {
+      background: #ff6f61;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 10px;
+    }
+
+    button:hover {
+      background: #ff3d2f;
+    }
+
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .success {
+      background: rgba(0, 255, 0, 0.1);
+      color: #006400; /* dark green */
+    }
+
+    .warning {
+      background: rgba(255, 0, 0, 0.1);
+      color: #8B0000; /* dark red */
+    }
+  </style>
+</head>
+<body>
+  <div class="vote-box">
+    <h2>🗳️ Cast Your Vote</h2>
+
+    {% if already_voted %}
+      <div class="message warning">You have already voted!</div>
+      <a href="/logout" style="color:white;">Logout</a>
+
+    {% elif message %}
+      <div class="message {% if success %}success{% else %}warning{% endif %}">
+        {{ message }}
+      </div>
+      <a href="/logout" style="color:white;">Logout</a>
+
+    {% else %}
+      <form method="POST" action="/vote">
+        <p><strong>Select your candidate:</strong></p>
+        <button type="submit" name="candidate" value="Candidate A">Candidate A</button>
+        <button type="submit" name="candidate" value="Candidate B">Candidate B</button>
+        <button type="submit" name="candidate" value="Candidate C">Candidate C</button>
+      </form>
+      <br>
+      <a href="/logout" style="color:white;">Logout</a>
+    {% endif %}
+  </div>
+</body>
+</html>

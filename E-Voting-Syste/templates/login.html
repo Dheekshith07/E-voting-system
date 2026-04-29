@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login - eVoting</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #6dd5fa, #2980b9);
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; font-family: Arial;
+        }
+        .box {
+            background: white; padding: 30px; border-radius: 10px; width: 300px;
+            text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        input, button {
+            width: 90%; margin: 10px 0; padding: 10px;
+            border: 1px solid #ccc; border-radius: 8px;
+        }
+        button {
+            background: #2980b9; color: white; border: none; cursor: pointer;
+        }
+        button:hover { background: #1a5276; }
+        .message { color: darkred; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>e-Voting Login</h2>
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+        <form method="POST">
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
